@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Orbitron', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -21,11 +25,25 @@ export default {
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          glow: "hsl(var(--primary-glow))",
+          dark: "hsl(var(--primary-dark))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
+          light: "hsl(var(--secondary-light))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          glow: "hsl(var(--accent-glow))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        gear: {
+          primary: "hsl(var(--gear-primary))",
+          secondary: "hsl(var(--gear-secondary))",
+          highlight: "hsl(var(--gear-highlight))",
+          shine: "hsl(var(--gear-shine))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -35,16 +53,13 @@ export default {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
+          hover: "hsl(var(--card-hover))",
           foreground: "hsl(var(--card-foreground))",
         },
         sidebar: {
