@@ -43,7 +43,9 @@ export default {
           primary: "hsl(var(--gear-primary))",
           secondary: "hsl(var(--gear-secondary))",
           highlight: "hsl(var(--gear-highlight))",
-          shine: "hsl(var(--gear-shine))",
+          shadow: "hsl(var(--gear-shadow))",
+          border: "hsl(var(--gear-border))",
+          hover: "hsl(var(--gear-hover))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -72,6 +74,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-metallic": "var(--gradient-metallic)",
+        "gradient-gear-shadow": "var(--gradient-gear-shadow)",
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-glow": "var(--gradient-glow)",
+        "gradient-radial": "var(--gradient-radial)",
       },
       borderRadius: {
         lg: "var(--radius)",

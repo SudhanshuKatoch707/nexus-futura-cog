@@ -8,13 +8,13 @@ interface NavigationItem {
 }
 
 const navigationItems: NavigationItem[] = [
-  { id: 'about', label: 'About Us', angle: 0 },
-  { id: 'services', label: 'Services', angle: 51.43 }, // 360/7
-  { id: 'portfolio', label: 'Portfolio', angle: 102.86 },
-  { id: 'reviews', label: 'Reviews', angle: 154.29 },
-  { id: 'blog', label: 'Blog', angle: 205.71 },
-  { id: 'careers', label: 'Careers', angle: 257.14 },
-  { id: 'contact', label: 'Contact Us', angle: 308.57 },
+  { id: 'automation', label: 'Business Process Automation', angle: 0 },
+  { id: 'workflow', label: 'Workflow Optimization', angle: 51.43 },
+  { id: 'analytics', label: 'Analytics Dashboards', angle: 102.86 },
+  { id: 'rpa', label: 'RPA Solutions', angle: 154.29 },
+  { id: 'integration', label: 'System Integration', angle: 205.71 },
+  { id: 'consulting', label: 'AI Consulting', angle: 257.14 },
+  { id: 'contact', label: 'Get Started', angle: 308.57 },
 ];
 
 interface CogwheelNavigationProps {
@@ -175,8 +175,11 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
             }}
           >
             {isHovered && (
-              <div className="whitespace-nowrap px-4 py-2 bg-card/95 backdrop-blur-sm rounded-xl border border-primary/30 shadow-lg">
-                <span className="text-primary font-semibold">{item.label}</span>
+              <div className="whitespace-nowrap px-6 py-3 bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-xl rounded-2xl border border-primary/50 shadow-2xl">
+                <span className="text-primary font-bold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  {item.label}
+                </span>
+                <div className="w-full h-0.5 bg-gradient-to-r from-primary to-accent mt-1 rounded-full"></div>
               </div>
             )}
           </div>
