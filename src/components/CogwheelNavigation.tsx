@@ -68,7 +68,7 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
   };
 
   const getLabelPosition = (angle: number) => {
-    const labelRadius = 190; // Closer to teeth for better UX
+    const labelRadius = 140; // Much closer to teeth
     const centerX = 200;
     const centerY = 200;
     const radians = angle * (Math.PI / 180);
@@ -147,7 +147,7 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
             className="fill-primary font-heading font-bold text-xl"
             style={{ filter: 'drop-shadow(0 0 10px hsl(var(--primary-glow)))' }}
           >
-            NEXUS
+            AVANZA
           </text>
           <text
             x="200"
@@ -177,8 +177,8 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
                 : "text-gear-shadow text-base opacity-0"
             )}
             style={{
-              left: position.x,
-              top: position.y,
+              left: `clamp(120px, ${position.x}px, calc(100vw - 120px))`,
+              top: `clamp(60px, ${position.y}px, calc(100vh - 60px))`,
             }}
           >
             {isHovered && (

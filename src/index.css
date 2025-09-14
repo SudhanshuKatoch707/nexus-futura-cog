@@ -175,24 +175,26 @@
   
   /* Gear Animation - Slow rotation with 3D effects */
   .gear-rotating {
-    filter: drop-shadow(var(--shadow-gear));
-    animation: gear-rotate 60s linear infinite;
+    filter: drop-shadow(var(--shadow-gear)) drop-shadow(0 0 20px hsl(var(--primary) / 0.3));
+    animation: gear-rotate 120s linear infinite;
+    transform-style: preserve-3d;
   }
   
   @keyframes gear-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from { transform: rotate(0deg) rotateX(5deg); }
+    to { transform: rotate(360deg) rotateX(5deg); }
   }
   
   .gear-tooth {
     @apply transition-all duration-500 cursor-pointer;
-    filter: drop-shadow(0 8px 20px hsl(var(--gear-shadow) / 0.4));
+    filter: drop-shadow(0 8px 20px hsl(var(--gear-shadow) / 0.4)) drop-shadow(0 0 10px hsl(var(--primary) / 0.2));
     transform-origin: center;
+    transform-style: preserve-3d;
   }
   
   .gear-tooth:hover {
-    @apply transform translate-y-[-15px] scale-110;
-    filter: drop-shadow(0 15px 35px hsl(var(--primary) / 0.6));
+    @apply transform translate-y-[-8px] scale-105;
+    filter: drop-shadow(0 15px 35px hsl(var(--primary) / 0.8)) drop-shadow(0 0 25px hsl(var(--primary-glow) / 0.6));
     background: linear-gradient(145deg, hsl(var(--gear-highlight)), hsl(var(--primary-glow)));
   }
   
