@@ -8,34 +8,34 @@
 
 @layer base {
   :root {
-    /* AI-Powered Futuristic Palette */
-    --background: 222 47% 11%;
-    --background-gradient: radial-gradient(ellipse at top left, hsl(222 47% 11%) 0%, hsl(230 35% 7%) 30%, hsl(235 50% 15%) 70%, hsl(225 40% 20%) 100%);
-    --foreground: 210 40% 98%;
+    /* AI-Powered Blue Futuristic Palette */
+    --background: 220 50% 8%;
+    --background-gradient: radial-gradient(ellipse at top left, hsl(220 50% 8%) 0%, hsl(225 60% 12%) 30%, hsl(230 70% 18%) 70%, hsl(235 55% 25%) 100%);
+    --foreground: 210 100% 98%;
     
-    /* Primary - Cyan AI Blue */
-    --primary: 180 100% 70%;
-    --primary-glow: 180 100% 80%;
-    --primary-dark: 180 100% 50%;
-    --primary-foreground: 222 47% 11%;
+    /* Primary - Bright Cyan Blue */
+    --primary: 195 100% 65%;
+    --primary-glow: 195 100% 75%;
+    --primary-dark: 195 100% 45%;
+    --primary-foreground: 220 50% 8%;
     
-    /* Secondary - Deep Tech */
-    --secondary: 225 40% 20%;
-    --secondary-light: 225 40% 30%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary - Deep Blue Tech */
+    --secondary: 230 70% 18%;
+    --secondary-light: 230 60% 25%;
+    --secondary-foreground: 210 100% 98%;
     
-    /* Accent - Electric Purple */
-    --accent: 270 100% 80%;
-    --accent-glow: 270 100% 90%;
-    --accent-foreground: 222 47% 11%;
+    /* Accent - Electric Blue */
+    --accent: 200 100% 70%;
+    --accent-glow: 200 100% 80%;
+    --accent-foreground: 220 50% 8%;
     
-    /* AI Gear Colors - Metallic with Cyan Highlights */
-    --gear-primary: 225 40% 25%;
-    --gear-secondary: 225 40% 30%;
-    --gear-highlight: 180 100% 70%;
-    --gear-shadow: 222 47% 11%;
-    --gear-border: 180 50% 60%;
-    --gear-hover: 180 100% 80%;
+    /* AI Gear Colors - Metallic with Blue Highlights */
+    --gear-primary: 230 70% 18%;
+    --gear-secondary: 230 60% 25%;
+    --gear-highlight: 195 100% 65%;
+    --gear-shadow: 220 50% 8%;
+    --gear-border: 195 70% 55%;
+    --gear-hover: 195 100% 75%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
@@ -137,10 +137,10 @@
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(600px circle at 20% 30%, hsl(var(--primary) / 0.3), transparent 50%),
-      radial-gradient(800px circle at 80% 70%, hsl(var(--accent) / 0.25), transparent 50%),
-      radial-gradient(1000px circle at 50% 20%, hsl(var(--primary-glow) / 0.15), transparent 60%),
-      radial-gradient(400px circle at 40% 80%, hsl(var(--secondary) / 0.2), transparent 40%);
+      radial-gradient(600px circle at 20% 30%, hsl(var(--primary) / 0.4), transparent 50%),
+      radial-gradient(800px circle at 80% 70%, hsl(var(--accent) / 0.35), transparent 50%),
+      radial-gradient(1000px circle at 50% 20%, hsl(var(--primary-glow) / 0.25), transparent 60%),
+      radial-gradient(400px circle at 40% 80%, hsl(var(--secondary) / 0.3), transparent 40%);
     pointer-events: none;
     z-index: -1;
     animation: pulse-bg 8s ease-in-out infinite;

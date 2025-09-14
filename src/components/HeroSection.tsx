@@ -1,6 +1,7 @@
 import React from 'react';
 import CogwheelNavigation from './CogwheelNavigation';
 import { Button } from '@/components/ui/button';
+import aiReferenceImage from '@/assets/ai-reference.png';
 
 interface HeroSectionProps {
   onNavigate: (sectionId: string) => void;
@@ -9,6 +10,15 @@ interface HeroSectionProps {
 export default function HeroSection({ onNavigate }: HeroSectionProps) {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-secondary/20">
+      {/* AI Reference Image */}
+      <div className="absolute top-20 right-10 opacity-30 pointer-events-none hidden lg:block">
+        <img 
+          src={aiReferenceImage} 
+          alt="AI Future Reference" 
+          className="w-80 h-60 object-cover rounded-2xl shadow-2xl border border-primary/20" 
+        />
+      </div>
+      
       {/* AI Automation Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating AI nodes */}
