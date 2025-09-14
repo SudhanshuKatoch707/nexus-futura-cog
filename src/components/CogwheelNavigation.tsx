@@ -68,7 +68,7 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
   };
 
   const getLabelPosition = (angle: number) => {
-    const labelRadius = 240; // Moved labels further out for bigger teeth
+    const labelRadius = 190; // Closer to teeth for better UX
     const centerX = 200;
     const centerY = 200;
     const radians = angle * (Math.PI / 180);
@@ -81,18 +81,23 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
 
   return (
     <div className="relative flex items-center justify-center">
-      <div className="gear-static"> {/* Removed rotation */}
+      <div className="gear-rotating"> {/* Slow rotation added */}
         <svg width="400" height="400" className="drop-shadow-xl">
           <defs>
             <linearGradient id="gearGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="hsl(var(--gear-primary))" />
               <stop offset="50%" stopColor="hsl(var(--gear-secondary))" />
-              <stop offset="100%" stopColor="hsl(var(--gear-highlight))" />
+              <stop offset="100%" stopColor="hsl(var(--gear-highlight) / 0.3)" />
             </linearGradient>
             <linearGradient id="toothGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(var(--gear-secondary))" />
-              <stop offset="50%" stopColor="hsl(var(--gear-highlight))" />
-              <stop offset="100%" stopColor="hsl(var(--gear-primary))" />
+              <stop offset="0%" stopColor="hsl(var(--gear-primary))" />
+              <stop offset="50%" stopColor="hsl(var(--gear-secondary))" />
+              <stop offset="100%" stopColor="hsl(var(--gear-border))" />
+            </linearGradient>
+            <linearGradient id="toothHoverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(var(--gear-highlight))" />
+              <stop offset="50%" stopColor="hsl(var(--primary-glow))" />
+              <stop offset="100%" stopColor="hsl(var(--primary))" />
             </linearGradient>
             <filter id="gearShadow">
               <feDropShadow dx="0" dy="5" stdDeviation="10" floodColor="hsl(var(--gear-shadow))" floodOpacity="0.4"/>
@@ -112,10 +117,10 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
             <path
               key={item.id}
               d={createToothPath(item.angle, hoveredTooth === item.id)}
-              fill="url(#toothGradient)"
+              fill={hoveredTooth === item.id ? "url(#toothHoverGradient)" : "url(#toothGradient)"}
               className={cn(
-                "gear-tooth cursor-pointer transition-all duration-300",
-                hoveredTooth === item.id && "opacity-90"
+                "gear-tooth cursor-pointer transition-all duration-500",
+                hoveredTooth === item.id && "drop-shadow-2xl"
               )}
               onMouseEnter={() => setHoveredTooth(item.id)}
               onMouseLeave={() => setHoveredTooth(null)}
@@ -128,10 +133,10 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
             cx="200"
             cy="200"
             r="80"
-            fill="hsl(var(--gear-primary))"
-            stroke="hsl(var(--gear-border))"
-            strokeWidth="2"
-            className="drop-shadow-md"
+            fill="url(#gearGradient)"
+            stroke="hsl(var(--gear-highlight))"
+            strokeWidth="3"
+            className="drop-shadow-xl"
           />
           
           {/* Center content */}
@@ -139,7 +144,8 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
             x="200"
             y="190"
             textAnchor="middle"
-            className="fill-gear-shadow font-heading font-bold text-xl"
+            className="fill-primary font-heading font-bold text-xl"
+            style={{ filter: 'drop-shadow(0 0 10px hsl(var(--primary-glow)))' }}
           >
             NEXUS
           </text>
@@ -147,9 +153,10 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
             x="200"
             y="210"
             textAnchor="middle"
-            className="fill-gear-border font-heading font-medium text-sm"
+            className="fill-accent font-heading font-medium text-sm"
+            style={{ filter: 'drop-shadow(0 0 5px hsl(var(--accent-glow)))' }}
           >
-            AUTOMATIONS
+            AI AUTOMATIONS
           </text>
         </svg>
       </div>
@@ -175,11 +182,11 @@ export default function CogwheelNavigation({ onNavigate }: CogwheelNavigationPro
             }}
           >
             {isHovered && (
-              <div className="whitespace-nowrap px-6 py-3 bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-xl rounded-2xl border border-primary/50 shadow-2xl">
-                <span className="text-primary font-bold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <div className="whitespace-nowrap px-4 py-2 bg-gradient-to-r from-gear-primary/90 to-gear-secondary/90 backdrop-blur-xl rounded-lg border border-primary/70 shadow-2xl animate-fade-in">
+                <span className="text-primary font-bold text-sm bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   {item.label}
                 </span>
-                <div className="w-full h-0.5 bg-gradient-to-r from-primary to-accent mt-1 rounded-full"></div>
+                <div className="w-full h-0.5 bg-gradient-to-r from-primary to-accent mt-1 rounded-full animate-shimmer"></div>
               </div>
             )}
           </div>

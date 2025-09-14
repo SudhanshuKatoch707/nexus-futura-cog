@@ -8,34 +8,34 @@
 
 @layer base {
   :root {
-    /* Futuristic Color Palette */
-    --background: 0 0% 100%;
-    --background-gradient: radial-gradient(ellipse at top, hsl(217 91% 97%) 0%, hsl(0 0% 100%) 50%, hsl(270 70% 98%) 100%);
-    --foreground: 220 15% 15%;
+    /* AI-Powered Futuristic Palette */
+    --background: 222 47% 11%;
+    --background-gradient: radial-gradient(ellipse at top left, hsl(222 47% 11%) 0%, hsl(230 35% 7%) 30%, hsl(235 50% 15%) 70%, hsl(225 40% 20%) 100%);
+    --foreground: 210 40% 98%;
     
-    /* Primary - Cyber Blue */
-    --primary: 217 91% 60%;
-    --primary-glow: 217 91% 70%;
-    --primary-dark: 217 91% 45%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary - Cyan AI Blue */
+    --primary: 180 100% 70%;
+    --primary-glow: 180 100% 80%;
+    --primary-dark: 180 100% 50%;
+    --primary-foreground: 222 47% 11%;
     
-    /* Secondary - Metallic */
-    --secondary: 220 15% 25%;
-    --secondary-light: 220 15% 35%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Deep Tech */
+    --secondary: 225 40% 20%;
+    --secondary-light: 225 40% 30%;
+    --secondary-foreground: 210 40% 98%;
     
     /* Accent - Electric Purple */
-    --accent: 270 70% 60%;
-    --accent-glow: 270 70% 70%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 270 100% 80%;
+    --accent-glow: 270 100% 90%;
+    --accent-foreground: 222 47% 11%;
     
-    /* Metallic Gear Colors - White with Black Shading */
-    --gear-primary: 0 0% 100%;
-    --gear-secondary: 0 0% 95%;
-    --gear-highlight: 0 0% 85%;
-    --gear-shadow: 0 0% 20%;
-    --gear-border: 0 0% 60%;
-    --gear-hover: 0 0% 90%;
+    /* AI Gear Colors - Metallic with Cyan Highlights */
+    --gear-primary: 225 40% 25%;
+    --gear-secondary: 225 40% 30%;
+    --gear-highlight: 180 100% 70%;
+    --gear-shadow: 222 47% 11%;
+    --gear-border: 180 50% 60%;
+    --gear-hover: 180 100% 80%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
@@ -137,11 +137,18 @@
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(600px circle at 20% 30%, hsl(var(--primary) / 0.15), transparent 40%),
-      radial-gradient(800px circle at 80% 70%, hsl(var(--accent) / 0.15), transparent 40%),
-      radial-gradient(400px circle at 40% 80%, hsl(var(--secondary) / 0.1), transparent 40%);
+      radial-gradient(600px circle at 20% 30%, hsl(var(--primary) / 0.3), transparent 50%),
+      radial-gradient(800px circle at 80% 70%, hsl(var(--accent) / 0.25), transparent 50%),
+      radial-gradient(1000px circle at 50% 20%, hsl(var(--primary-glow) / 0.15), transparent 60%),
+      radial-gradient(400px circle at 40% 80%, hsl(var(--secondary) / 0.2), transparent 40%);
     pointer-events: none;
     z-index: -1;
+    animation: pulse-bg 8s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-bg {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -166,19 +173,27 @@
     @apply border border-border hover:border-primary/30;
   }
   
-  /* Gear Animation - Remove rotation */
-  .gear-static {
+  /* Gear Animation - Slow rotation with 3D effects */
+  .gear-rotating {
     filter: drop-shadow(var(--shadow-gear));
+    animation: gear-rotate 60s linear infinite;
+  }
+  
+  @keyframes gear-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
   
   .gear-tooth {
-    @apply transition-all duration-300 cursor-pointer;
-    filter: drop-shadow(0 5px 15px hsl(var(--gear-shadow) / 0.3));
+    @apply transition-all duration-500 cursor-pointer;
+    filter: drop-shadow(0 8px 20px hsl(var(--gear-shadow) / 0.4));
+    transform-origin: center;
   }
   
   .gear-tooth:hover {
-    @apply transform translate-y-[-12px];
-    filter: drop-shadow(0 10px 25px hsl(var(--gear-shadow) / 0.5));
+    @apply transform translate-y-[-15px] scale-110;
+    filter: drop-shadow(0 15px 35px hsl(var(--primary) / 0.6));
+    background: linear-gradient(145deg, hsl(var(--gear-highlight)), hsl(var(--primary-glow)));
   }
   
   /* Text Effects */
