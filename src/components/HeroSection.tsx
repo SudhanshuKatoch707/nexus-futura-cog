@@ -1,7 +1,6 @@
 import React from 'react';
 import CogwheelNavigation from './CogwheelNavigation';
 import { Button } from '@/components/ui/button';
-import avanzaLogo from '@/assets/avanza-logo.jpg';
 
 
 interface HeroSectionProps {
@@ -37,25 +36,25 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
         <div className="absolute top-3/4 right-1/4 w-full h-px bg-gradient-to-l from-transparent via-accent/20 to-transparent animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
       
-      {/* Logo and Opening Text */}
+      {/* Brand Logo and Opening Text */}
       <div className="text-center mb-16 px-6 z-10">
-        <div className="mb-8 flex justify-center">
-          <img 
-            src={avanzaLogo} 
-            alt="Avanza Tech Logo" 
-            className="h-24 md:h-32 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
-          />
+        <div className="mb-8">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold mb-2">
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-300% animate-shimmer">
+              AVANZA
+            </span>
+          </h1>
+          <p className="text-xl md:text-2xl font-heading font-light tracking-[0.2em] text-primary/70">
+            TECH
+          </p>
         </div>
-        <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-300% animate-shimmer">
+        <h2 className="text-2xl md:text-4xl font-heading font-semibold mb-6">
+          <span className="bg-gradient-to-r from-primary/90 to-accent/90 bg-clip-text text-transparent">
             AI Automation Solutions
           </span>
-        </h1>
-        <h2 className="text-xl md:text-2xl font-heading font-semibold mb-4 text-primary/80">
-          Transform Your Business with Intelligence
         </h2>
         <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed">
-          Transform your business with intelligent automation. Streamline workflows, optimize processes, and unlock unprecedented efficiency with our cutting-edge AI solutions.
+          Transform your business with intelligent automation. Streamline workflows, optimize processes, and unlock unprecedented efficiency.
         </p>
       </div>
 
