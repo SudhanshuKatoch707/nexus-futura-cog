@@ -129,21 +129,13 @@
     overflow-x: hidden;
   }
   
-  body::before {
-    content: '';
+  #vanta-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-      radial-gradient(600px circle at 20% 30%, hsl(var(--primary) / 0.4), transparent 50%),
-      radial-gradient(800px circle at 80% 70%, hsl(var(--accent) / 0.35), transparent 50%),
-      radial-gradient(1000px circle at 50% 20%, hsl(var(--primary-glow) / 0.25), transparent 60%),
-      radial-gradient(400px circle at 40% 80%, hsl(var(--secondary) / 0.3), transparent 40%);
-    pointer-events: none;
     z-index: -1;
-    animation: pulse-bg 8s ease-in-out infinite;
   }
   
   @keyframes pulse-bg {
