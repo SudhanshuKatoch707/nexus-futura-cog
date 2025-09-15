@@ -1,6 +1,8 @@
 import React from 'react';
 import HeroSection from '@/components/HeroSection';
+import ResultsSection from '@/components/ResultsSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
+import SimpleContactForm from '@/components/SimpleContactForm';
 
 const Index = () => {
   const handleNavigation = (sectionId: string) => {
@@ -16,7 +18,9 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <HeroSection onNavigate={handleNavigation} />
+      <ResultsSection />
       <WhyChooseUsSection />
+      <SimpleContactForm />
     </div>
   );
 };
