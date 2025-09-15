@@ -27,7 +27,14 @@ const results = [
 
 export default function ResultsSection() {
   return (
-    <section id="results" className="section-padding bg-gradient-to-b from-background to-secondary/5">
+    <section id="results" className="section-padding bg-gradient-to-b from-background via-secondary/10 to-background relative overflow-hidden">
+      {/* Background tech elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 border border-primary/20 rotate-45"></div>
+        <div className="absolute bottom-40 right-20 w-24 h-24 border border-accent/20 rotate-12"></div>
+        <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-primary/30 rounded-full animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-accent/30 rounded-full animate-ping"></div>
+      </div>
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
@@ -38,12 +45,12 @@ export default function ResultsSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
           {results.map((result, index) => (
-            <Card key={index} className="service-card text-center group hover:scale-105 transition-all duration-300">
+            <Card key={index} className="service-card text-center group hover:scale-105 transition-all duration-500 border-primary/20 bg-gradient-to-br from-card via-card/95 to-primary/5 backdrop-blur-sm">
               <CardContent className="pt-8 pb-6">
-                <div className="mx-auto p-4 bg-primary/10 rounded-lg w-fit mb-6 group-hover:bg-primary/20 transition-colors">
-                  <result.icon className="w-8 h-8 text-primary" />
+                <div className="mx-auto p-4 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl w-fit mb-6 group-hover:from-primary/20 group-hover:to-accent/20 transition-all duration-300 shadow-lg group-hover:shadow-primary/20">
+                  <result.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-xl font-heading font-bold text-primary mb-4">
                   {result.headline}

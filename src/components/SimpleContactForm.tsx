@@ -118,23 +118,36 @@ export default function SimpleContactForm() {
   }
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-t from-secondary/10 to-background">
-      <div className="container mx-auto max-w-2xl">
+    <section id="contact" className="section-padding bg-gradient-to-t from-secondary/20 via-background to-background relative overflow-hidden">
+      {/* Background tech pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-40 h-40 border border-primary/30 rounded-full"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 border border-accent/30 rounded-full"></div>
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 1000">
+          <path d="M200,200 Q500,100 800,200 Q700,500 800,800 Q500,700 200,800 Q300,500 200,200" 
+                stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.1" />
+        </svg>
+      </div>
+      <div className="container mx-auto max-w-2xl relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-            Let's Get Started
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              Let's Get Started
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground max-w-xl mx-auto">
             Fill out the form below and we'll be in touch to discuss how AI automation can transform your business.
           </p>
         </div>
         
-        <Card className="service-card">
-          <CardHeader>
-            <CardTitle className="text-2xl font-heading text-primary text-center">
-              Get in Touch
+        <Card className="service-card border-primary/20 bg-gradient-to-br from-card via-card/95 to-primary/5 backdrop-blur-sm shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-heading mb-2">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Get in Touch
+              </span>
             </CardTitle>
-            <CardDescription className="text-center">
+            <CardDescription className="text-muted-foreground">
               Tell us about your automation needs and we'll provide a customized solution.
             </CardDescription>
           </CardHeader>
