@@ -70,26 +70,26 @@ export default function WhyChooseUsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {automationServices.map((service, index) => (
             <div key={index} className="group relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              <div className="relative bg-background/90 backdrop-blur-xl border-2 border-primary/30 rounded-2xl p-8 hover:border-primary/60 transition-all duration-500 group-hover:transform group-hover:scale-[1.02] shadow-2xl hover:shadow-primary/20">
-                <div className="flex items-start space-x-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-500 shadow-lg">
-                    <service.icon className="w-10 h-10 text-background" />
+              <div className="relative bg-background/90 backdrop-blur-xl border-2 border-primary/30 rounded-2xl p-6 lg:p-8 hover:border-primary/60 transition-all duration-500 group-hover:transform group-hover:scale-[1.02] shadow-2xl hover:shadow-primary/20">
+                <div className="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:rotate-12 transition-transform duration-500 shadow-lg mx-auto sm:mx-0">
+                    <service.icon className="w-8 h-8 sm:w-10 sm:h-10 text-background" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-heading font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
+                  <div className="flex-1 text-center sm:text-left">
+                    <h3 className="text-xl lg:text-2xl font-heading font-bold mb-3 lg:mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
                       {service.title}
                     </h3>
-                    <p className="text-foreground/80 leading-relaxed mb-6 text-lg font-medium">
+                    <p className="text-foreground/80 leading-relaxed mb-4 lg:mb-6 text-base lg:text-lg font-medium">
                       {service.description}
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-3">
                       {service.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center space-x-3 text-base">
-                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-accent rounded-full flex-shrink-0 shadow-sm"></div>
+                        <div key={featureIndex} className="flex items-center justify-center sm:justify-start space-x-3 text-sm lg:text-base">
+                          <div className="w-2 h-2 lg:w-3 lg:h-3 bg-gradient-to-r from-primary to-accent rounded-full flex-shrink-0 shadow-sm"></div>
                           <span className="text-foreground/90 group-hover:text-foreground transition-colors duration-300 font-medium">
                             {feature}
                           </span>
