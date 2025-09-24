@@ -49,8 +49,10 @@ export default function ServicesSection() {
               <div className="relative overflow-hidden rounded-t-xl">
                 <img 
                   src={service.image} 
-                  alt={service.title}
+                  alt={`${service.title} - Professional AI automation services`}
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gear-primary/80 to-transparent" />
                 <div className="absolute top-4 left-4">
