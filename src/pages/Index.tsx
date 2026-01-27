@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroSection from '@/components/HeroSection';
 import ResultsSection from '@/components/ResultsSection';
+import FlagshipProjectSection from '@/components/FlagshipProjectSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import SimpleContactForm from '@/components/SimpleContactForm';
 
@@ -19,6 +20,7 @@ const Index = () => {
     <div className="min-h-screen">
       <HeroSection onNavigate={handleNavigation} />
       <ResultsSection />
+      <FlagshipProjectSection />
       <WhyChooseUsSection />
       <SimpleContactForm />
     </div>

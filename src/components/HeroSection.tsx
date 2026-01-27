@@ -50,11 +50,14 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
         </div>
         <h2 className="text-2xl md:text-4xl font-heading font-semibold mb-6">
           <span className="bg-gradient-to-r from-primary/90 to-accent/90 bg-clip-text text-transparent">
-            AI Automation Solutions
+            Automated Control Systems for SMBs
           </span>
         </h2>
-        <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed">
-          Transform your business with intelligent automation. Streamline workflows, optimize processes, and unlock unprecedented efficiency.
+        <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed mb-4">
+          We build automated control systems for SMBs. Not tools. Not dashboards.
+        </p>
+        <p className="text-lg md:text-xl text-primary/90 max-w-2xl mx-auto font-medium">
+          Systems that protect, organize, and optimize businesses.
         </p>
       </div>
 
