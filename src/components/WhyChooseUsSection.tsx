@@ -5,25 +5,25 @@ const automationServices = [
   {
     icon: Workflow,
     title: "Business Process Automation",
-    description: "Streamline repetitive tasks and workflows to boost efficiency and reduce operational costs.",
-    features: ["Workflow Optimization", "Task Automation", "Integration Solutions", "Process Mining"]
+    description: "Gain operational clarity through streamlined workflows that reduce chaos and enhance business visibility.",
+    features: ["Workflow Optimization", "Operational Clarity", "Integration Solutions", "Risk Reduction"]
   },
   {
     icon: BarChart3,
-    title: "Analytics Dashboards",
-    description: "Real-time insights and KPI tracking with beautiful, actionable business intelligence dashboards.",
-    features: ["Real-time Analytics", "Custom KPIs", "Data Visualization", "Mobile Responsive"]
+    title: "Business Intelligence Systems",
+    description: "Transform scattered data into structured business intelligence with automated oversight and audit readiness.",
+    features: ["Financial Control", "Business Visibility", "Automated Reporting", "Audit Readiness"]
   },
   {
     icon: Bot,
-    title: "RPA Solutions",
-    description: "Robotic Process Automation to handle high-volume, rule-based tasks across your systems.",
-    features: ["System Integration", "Data Migration", "Legacy System Automation", "Compliance Monitoring"]
+    title: "Automated Oversight Solutions",
+    description: "Deploy intelligent automation for continuous monitoring, compliance tracking, and risk reduction across your operations.",
+    features: ["System Integration", "Compliance Monitoring", "Automated Oversight", "Data Migration"]
   },
   {
     icon: Settings,
-    title: "AI Consulting",
-    description: "Expert guidance on AI adoption strategies and seamless integration into your business ecosystem.",
+    title: "Control System Consulting",
+    description: "Expert guidance on building automated control systems that protect, organize, and optimize your business.",
     features: ["Strategy Development", "Technology Selection", "Implementation Planning", "Change Management"]
   }
 ];
@@ -63,10 +63,10 @@ export default function WhyChooseUsSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-heading font-bold mb-8 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-shimmer">
-            Our Automation Solutions
+            Our Control Systems
           </h2>
           <p className="text-2xl text-foreground/80 max-w-4xl mx-auto leading-relaxed">
-            Transform your business with cutting-edge AI and automation technologies designed for the future.
+            Build financial control, business visibility, and automated oversight into your operations.
           </p>
         </div>
 
@@ -105,7 +105,7 @@ export default function WhyChooseUsSection() {
 
         <div className="text-center mt-16">
           <button className="btn-hero group relative overflow-hidden">
-            <span className="relative z-10">Experience the Future Today</span>
+            <span className="relative z-10">Build Your Control System</span>
             <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
         </div>
