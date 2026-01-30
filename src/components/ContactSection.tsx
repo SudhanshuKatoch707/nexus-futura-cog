@@ -1,159 +1,310 @@
-import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useState } from 'react';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const contactInfo = [
   {
     icon: Mail,
-    title: 'Email Us',
-    details: 'hello@nexusautomations.ai',
-    description: 'Get a response within 24 hours',
+    label: 'Email',
+    value: 'hello@avanzaautomations.com',
+    href: 'mailto:hello@avanzaautomations.com',
   },
   {
     icon: Phone,
-    title: 'Call Us',
-    details: '+1 (555) 123-4567',
-    description: 'Mon-Fri 9AM-6PM EST',
+    label: 'Phone',
+    value: '+1 (555) 123-4567',
+    href: 'tel:+15551234567',
   },
   {
     icon: MapPin,
-    title: 'Visit Us',
-    details: 'San Francisco, CA',
-    description: 'Remote-first company',
+    label: 'Location',
+    value: 'Remote & Worldwide',
   },
   {
     icon: Clock,
-    title: 'Quick Response',
-    details: '< 2 Hours',
-    description: 'Average response time',
+    label: 'Response Time',
+    value: 'Within 24 hours',
   },
 ];
 
 export default function ContactSection() {
-  return (
-    <section id="contact" className="section-padding">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Let's discuss how AI automation can revolutionize your operations. Book a free consultation today.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <Card className="service-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-heading text-primary">
-                Book Your Free Consultation
-              </CardTitle>
-              <CardDescription>
-                Tell us about your business challenges and discover how we can help
-              </CardDescription>
-            </CardHeader>
-            
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" placeholder="John" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Doe" />
-                </div>
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          to_email: 'avanzatech.co@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          from_company: formData.company,
+          message: formData.message,
+        },
+        'YOUR_PUBLIC_KEY'
+      );
+
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', company: '', message: '' });
+      
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+    } catch (error) {
+      console.error('Email send failed:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <section id="contact" className="section-padding bg-background relative overflow-hidden">
+        <div className="container mx-auto max-w-2xl">
+          <Card className="card-elevated text-center">
+            <CardContent className="py-16">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/20 flex items-center justify-center">
+                <CheckCircle className="w-8 h-8 text-accent" />
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="john@company.com" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="company">Company</Label>
-                <Input id="company" placeholder="Your Company Name" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="message">Tell us about your automation needs</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Describe your current challenges and how we might help..."
-                  rows={4}
-                />
-              </div>
-              
-              <Button className="w-full btn-hero">
-                Book Free Consultation
+              <h2 className="text-3xl font-heading font-bold text-foreground mb-4">
+                Thank You!
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Your message has been received. We'll get back to you within 24 hours.
+              </p>
+              <Button
+                onClick={() => setIsSubmitted(false)}
+                variant="outline"
+                className="border-accent text-accent hover:bg-accent hover:text-background"
+              >
+                Send Another Message
               </Button>
             </CardContent>
           </Card>
-          
-          {/* Contact Information */}
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {contactInfo.map((info, index) => (
-                <Card key={index} className="service-card text-center">
-                  <CardContent className="pt-6">
-                    <div className="mx-auto p-3 bg-primary/10 rounded-lg w-fit mb-4">
-                      <info.icon className="w-6 h-6 text-primary" />
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="contact" className="section-padding bg-background relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-radial from-primary/10 via-transparent to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-radial from-accent/10 via-transparent to-transparent blur-3xl" />
+      </div>
+
+      <div className="container mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="text-sm font-medium text-accent uppercase tracking-wider mb-4 block">
+            Let's Talk
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
+            Schedule Your Free Consultation
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Tell us about your business and we'll show you exactly how automation can help you grow
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+          {/* Contact Info */}
+          <div className="lg:col-span-2 space-y-8">
+            <div>
+              <h3 className="text-xl font-heading font-bold text-foreground mb-6">
+                Get in Touch
+              </h3>
+              <div className="space-y-4">
+                {contactInfo.map((item, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-accent" />
                     </div>
-                    <h3 className="font-heading font-semibold text-primary mb-2">
-                      {info.title}
-                    </h3>
-                    <p className="font-medium text-foreground mb-1">
-                      {info.details}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {info.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+                    <div>
+                      <p className="text-sm text-muted-foreground">{item.label}</p>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="text-foreground hover:text-accent transition-colors"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-foreground">{item.value}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            
-            <Card className="service-card">
-              <CardHeader>
-                <CardTitle className="text-xl font-heading text-primary">
-                  What Happens Next?
-                </CardTitle>
+
+            {/* What to Expect */}
+            <div className="p-6 bg-card border border-border rounded-xl">
+              <h4 className="font-heading font-bold text-foreground mb-4">
+                What to Expect
+              </h4>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <span>30-minute video call</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <span>Analysis of your current processes</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <span>Identification of automation opportunities</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <span>Estimated time and cost savings</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <span>No obligation whatsoever</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div className="lg:col-span-3">
+            <Card className="card-elevated">
+              <CardHeader className="pb-2">
+                <h3 className="text-xl font-heading font-bold text-foreground">
+                  Request Your Free Consultation
+                </h3>
               </CardHeader>
               <CardContent>
-                <ol className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                      <span className="text-sm font-semibold text-primary">1</span>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Your Name *</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="John Smith"
+                        className="bg-secondary border-border"
+                        required
+                      />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Free Consultation</h4>
-                      <p className="text-sm text-muted-foreground">We discuss your challenges and automation opportunities</p>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="john@company.com"
+                        className="bg-secondary border-border"
+                        required
+                      />
                     </div>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                      <span className="text-sm font-semibold text-primary">2</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Custom Strategy</h4>
-                      <p className="text-sm text-muted-foreground">We create a tailored automation roadmap for your business</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                      <span className="text-sm font-semibold text-primary">3</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Implementation</h4>
-                      <p className="text-sm text-muted-foreground">We deploy and optimize your AI automation solutions</p>
-                    </div>
-                  </li>
-                </ol>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="company">Company Name</Label>
+                    <Input
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      placeholder="Your Company"
+                      className="bg-secondary border-border"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message">How can we help? *</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Tell us about your business and what processes you'd like to automate..."
+                      rows={5}
+                      className="bg-secondary border-border resize-none"
+                      required
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="btn-primary w-full flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      'Sending...'
+                    ) : (
+                      <>
+                        Schedule Free Consultation
+                        <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
+                  </Button>
+
+                  <p className="text-xs text-center text-muted-foreground">
+                    By submitting, you agree to our Privacy Policy. We'll never spam you.
+                  </p>
+                </form>
               </CardContent>
             </Card>
           </div>
